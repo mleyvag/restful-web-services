@@ -2,6 +2,7 @@ package com.leyva.pe.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -30,6 +31,17 @@ public class UserDaoService {
 	public User findOne(int id) {
 		for(User user : users) {
 			if (user.getId()==id) {
+				return user;
+			}
+		}
+		return null;
+	}
+	public User deleteById(int id) {
+		Iterator<User> iterator = users.iterator();
+		while (iterator.hasNext()) {
+			User user = iterator.next();
+			if (user.getId().equals(id)) {
+				iterator.remove();
 				return user;
 			}
 		}
